@@ -61,6 +61,13 @@ sudo reboot
 nvidia-smi
 ```
 
+### Install non-free video codecs
+```bash
+sudo apt install ubuntu-restricted-extras
+sudo apt install vainfo
+vainfo
+```
+
 ## List Installed Snaps
 
 First, check which Snap packages are currently installed on your system:
