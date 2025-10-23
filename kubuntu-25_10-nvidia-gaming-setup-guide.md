@@ -43,6 +43,14 @@ If you aren't sure which to select, use the driver with 'recommended' tagged on 
 sudo apt install nvidia-driver-[version]-open -y
 ```
 
+### Ubuntu Driver Siging (Secure Boot)
+When you install an NVIDIA driver from the PPA, Ubuntu automatically detects the need to sign third-party modules when Secure Boot is enabled.
+A unique local signing key, called a Machine Owner Key (MOK), should automatically be generated. The NVIDIA kernel modules are then automatically signed with this newly generated MOK.
+Ubuntu should detect that the MOK has not been enrolled in your UEFI firmware, and it will prompt you to set a password during the driver installation process.
+After the first reboot, you should be presented with the MokManager blue screen before the system fully boots.
+Select "Enroll MOK" and use the password you set during the driver installation.
+Once the key is enrolled, Ubuntu will trust any module signed with that key, and the driver will load correctly with Secure Boot enabled.
+
 ### Reboot
 ```bash
 sudo reboot
