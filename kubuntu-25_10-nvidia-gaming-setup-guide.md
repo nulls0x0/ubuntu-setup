@@ -2,7 +2,8 @@
 
 # Nvidia Drivers Install
 
-**Important:** Disable secure boot in your bios. If you use Secure Boot, you might need to enroll MOK keys for the NVIDIA modules.
+**Important:** Disable secure boot in your bios. If you use Secure Boot, you might need to enroll MOK keys for the NVIDIA modules. 
+Refer to the Ubuntu documentation for "Secure Boot" if you encounter issues after driver installation.
 
 Reboot the system before installing the drivers (especially if you just updated the kernel).
 
@@ -13,37 +14,33 @@ sudo dpkg --add-architecture i386
 sudo apt update && sudo apt upgrade -y
 ```
 
+### Add the graphics-drivers PPA
+This PPA provides the latest NVIDIA drivers for Ubuntu-based distributions:
+```bash
+sudo add-apt-repository ppa:graphics-drivers/ppa -y
+sudo apt update
+```
+
 ### Install kernel headers and build tools
+These are required for building the NVIDIA kernel modules:
 ```bash
 sudo apt install linux-headers-$(uname -r) build-essential dkms -y
 ```
 
-### Add Nvidia GPG Key
-We use the Nvidia Debian 12 repo until Nvidia publishes a repo for Debian 13
-```bash
-sudo apt install curl -y # Ensure curl is installed
-curl -fsSL https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/3bf863cc.pub | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/nvidia-cuda.gpg
+### Install NVIDIA Open Kernel Driver
+The NVIDIA open kernel driver provides better performance and integration with the Linux kernel.
+This is recommended for RTX 20 series (Turing) and newer GPUs.
 
-sudo apt update
+First, check what drivers are available for your system:
+```bash
+ubuntu-drivers devices | grep 'nvidia-driver.*-open'
 ```
 
-### Add NVIDIA repo
+Then install the latest NVIDIA open driver: i.e. nvidia-driver-[version]-open
+If you aren't sure which to select, use the driver with 'recommended' tagged on the end
 ```bash
-echo "deb https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/ /" | sudo tee /etc/apt/sources.list.d/nvidia-cuda.list
-
-sudo apt update
-```
-
-### Install kernel headers and build tools
-```bash
-sudo apt install linux-headers-amd64 linux-headers-$(uname -r) build-essential dkms -y
-```
-
-### Install NVIDIA Open driver
-nvidia-open: NVIDIA Driver meta-package, Open GPU kernel modules, latest version Meta-package containing all the available packages related to the NVIDIA driver.modules.
-
-```bash
-sudo apt install nvidia-open -y
+# Install the latest available NVIDIA open driver
+sudo apt install nvidia-driver-[version]-open -y
 ```
 
 ### Reboot
@@ -54,8 +51,6 @@ sudo reboot
 ### Verify Nvidia Driver Install
 ```bash
 nvidia-smi
-
-sudo dmesg | grep nvidia
 ```
 
 ## List Installed Snaps
