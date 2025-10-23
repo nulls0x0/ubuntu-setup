@@ -118,11 +118,11 @@ cp /usr/share/applications/google-chrome.desktop ~/.local/share/applications/
 nano ~/.local/share/applications/google-chrome.desktop
 
 # Look for the lines starting with Exec= and add these launch options
---enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoDecodeLinuxGL,VaapiIgnoreDriverChecks,AcceleratedVideoEncoder
+--enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoDecodeLinuxGL,VaapiIgnoreDriverChecks,VaapiOnNvidiaGPUs,AcceleratedVideoEncoder
 
 # Here is a scripted method
 FILE_PATH=~/.local/share/applications/google-chrome.desktop
-FLAGS=" --enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoDecodeLinuxGL,VaapiIgnoreDriverChecks,AcceleratedVideoEncoder"
+FLAGS=" --enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoDecodeLinuxGL,VaapiIgnoreDriverChecks,VaapiOnNvidiaGPUs,AcceleratedVideoEncoder"
 sed -i 's/ --enable-features=[^ ]*//g' "$FILE_PATH"
 sed -i "s/^\(Exec=.*google-chrome-stable\)\(.*\)/\1${FLAGS}\2/g" "$FILE_PATH"
 ```
