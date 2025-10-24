@@ -55,6 +55,13 @@ Update your package lists:
 sudo apt update
 ```
 
+## Enable NTSYNC Kernel Module
+The ntsync (NT Synchronization Primitive) kernel module is a specialized driver for Linux designed to significantly improve the performance and compatibility of Windows applications, particularly games, when run through compatibility layers like Proton.
+To enable the kernel module to load at boot:
+```bash
+echo 'ntsync' | sudo tee /etc/modules-load.d/ntsync.conf
+```
+
 ## Flatpak
 
 Flatpak is another containerized package format that some users prefer:
