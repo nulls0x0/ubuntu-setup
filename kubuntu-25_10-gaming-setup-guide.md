@@ -60,6 +60,12 @@ The ntsync (NT Synchronization Primitive) kernel module is a specialized driver 
 To enable the kernel module to load at boot:
 ```bash
 echo 'ntsync' | sudo tee /etc/modules-load.d/ntsync.conf
+
+# Loads the module immediately without a reboot
+sudo modprobe ntsync
+
+# Verify the module is loaded
+lsmod | grep ntsync
 ```
 
 ## Flatpak
