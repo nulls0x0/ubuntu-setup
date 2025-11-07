@@ -188,17 +188,6 @@ sed -i "s/^\(Exec=.*google-chrome-stable\)\(.*\)/\1${FLAGS}\2/g" "$FILE_PATH"
 sudo apt install steam-installer -y
 ```
 
-## Installing Gamemode for on-demand performance
-```bash
-sudo apt install gamemode -y
-```
-
-## Makes the system prefer using RAM over disk swap
-```bash
-sudo sysctl vm.swappiness=10
-echo 'vm.swappiness=10' | sudo tee /etc/sysctl.d/99-swappiness.conf > /dev/null
-```
-
 # Gaming Applications Setup
 
 ### ProtonUp-Qt (Flatpak)
@@ -225,3 +214,73 @@ echo 'vm.swappiness=10' | sudo tee /etc/sysctl.d/99-swappiness.conf > /dev/null
 3. Select the **OBS Studio** Flatpak (From Flathub) package
 4. Click **Install**
 
+# Part III: KDE Desktop Tweaks
+### Set Maximum Refresh Rate for Your Display
+
+Ensuring your display is set to its maximum refresh rate is crucial for smooth gaming. Higher refresh rates provide a better gaming experience with reduced input lag and smoother motion.
+
+1. Open **System Settings**
+2. Go to **Display & Monitor**
+3. Select your monitor
+4. Under **Refresh rate**, select the highest available option (e.g., 144 Hz, 165 Hz, 240 Hz)
+5. Click **Apply**
+
+### Enable Gsync or FreeSync
+
+To enable variable refresh rates for your games.
+
+1. Open **System Settings**
+2. Go to **Display & Monitor**
+3. Select your gaming monitor
+4. Under **Adaptive sync**, select the **Automatic** or **Always** option
+5. Under **Screen tearing** check **Allow in fullscreen windows**
+6. Click **Apply**
+
+Automatic: 
+Adaptive Sync is only enabled when an opaque fullscreen window is in focus. This is typically a full-screen game or a full-screen video player. Adaptive Sync will not be active for windowed games, desktop navigation, or other non-fullscreen content.
+
+Always:
+Adaptive Sync is permanently enabled. The display's refresh rate will constantly adjust to match the frame rate of the entire screen, including desktop elements, windows, and video content. It can cause the screen to noticeably flicker or feel sluggish with low-framerate content.
+
+### Disable Mouse Acceleration
+
+Mouse acceleration can negatively impact gaming performance, especially in FPS games where precise aim is crucial. Disabling it provides consistent 1:1 mouse movement.
+
+1. Open **System Settings**
+2. Go to **Mouse and Touchpad**
+3. Select **Mouse**
+4. Select your mouse in the **Device** drop down
+5. Un-check the **Enable pointer acceleration** check box
+6. Click **Apply**
+
+### Enable CPU Performance Governor
+
+For better gaming performance, you can set your CPU governor to performance mode:
+
+1. On the Taskbar left click **Show hidden icons** arrow
+2. Open **Power Management**
+3. Move the **Power Profile** slider to **Performance**
+
+## Installing Gamemode for on-demand performance
+```bash
+sudo apt install gamemode -y
+```
+   
+### Enable Gamemode for Steam Games
+To enable gamemode for your Steam games, you need to add a launch option to each game:
+
+**For Individual Games:**
+1. Open your Steam Library
+2. Right-click on the game you want to optimize
+3. Select **Properties**
+4. In the **Launch Options** field, add:
+   ```
+   gamemoderun %command%
+   ```
+5. Close the properties window and launch the game
+
+### Makes the system prefer using RAM over disk swap
+```bash
+sudo sysctl vm.swappiness=10
+echo 'vm.swappiness=10' | sudo tee /etc/sysctl.d/99-swappiness.conf > /dev/null
+```
