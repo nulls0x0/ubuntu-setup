@@ -99,12 +99,20 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 ```
 
 ## Chrome Browser: Hardware Accelerated Video
-To help reduce power usage and make our system more efficent when watching video using Chrome, we must add launch options when running Chrome.
-Depending on your GPU manufacturer you will use differnt options.
+To help reduce power usage and make our system more efficent when watching video using Chrome, we must add some launch options.
 
-Intel: --enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder
-AMD: --enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoDecodeLinuxGL,VaapiIgnoreDriverChecks
-Nvidia: --enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoDecodeLinuxGL,VaapiIgnoreDriverChecks,VaapiOnNvidiaGPUs
+Intel: 
+```
+--enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder
+```
+AMD: 
+```
+--enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoDecodeLinuxGL,VaapiIgnoreDriverChecks
+```
+Nvidia: 
+```
+--enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoDecodeLinuxGL,VaapiIgnoreDriverChecks,VaapiOnNvidiaGPUs
+```
 
 The steps below use the AMD launch options. Substitute the correct options based on your GPU model.
 
