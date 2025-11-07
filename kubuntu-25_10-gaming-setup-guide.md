@@ -36,15 +36,15 @@ sudo apt install vainfo
 vainfo
 ```
 
-## List Installed Snaps
+## Remove Snaps
 
-First, check which Snap packages are currently installed on your system:
+If you performed the minimal install, there shouldn't be any snaps installed. List the snaps currently installed on your system:
 
 ```bash
 snap list
 ```
 
-## Prevent Snapd from Being installed
+## Prevent Snaps from Being installed
 
 Create an APT preference file to prevent snapd from being reinstalled automatically:
 
