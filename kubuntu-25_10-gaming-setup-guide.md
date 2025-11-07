@@ -74,7 +74,8 @@ Reboot the system to load the Nvidia driver.
 ```bash
 sudo reboot
 ```
-Part II: Applications
+
+# Part II: Applications
 
 ## Remove Snaps
 
