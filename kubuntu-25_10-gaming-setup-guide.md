@@ -7,6 +7,8 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt install ./google-chrome-stable_current_amd64.deb
 ```
 
+# Part I: Drivers
+
 ### Add 32-bit platform support
 This ensures 32-bit drivers will be installed which are required for Steam later.
 ```bash
@@ -19,7 +21,7 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install linux-headers-$(uname -r) build-essential dkms -y
 ```
 
-# AMD Drivers Install
+## AMD Drivers Install
 Follow these steps only if you have an AMD GPU.
 
 ### Install latest stable version of Mesa driver
@@ -32,7 +34,7 @@ sudo apt update
 sudo apt upgrade
 ```
 
-# Nvidia Drivers Install
+## Nvidia Drivers Install
 Follow these steps only if you have an Nvidia GPU.
 
 ### Add the graphics-drivers PPA
@@ -72,6 +74,7 @@ Reboot the system to load the Nvidia driver.
 ```bash
 sudo reboot
 ```
+Part II: Applications
 
 ## Remove Snaps
 
