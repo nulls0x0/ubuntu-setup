@@ -8,7 +8,7 @@ sudo apt install ./google-chrome-stable_current_amd64.deb
 ```
 
 ### Add 32-bit platform support
-This ensures 32bit drivers will be installed which are required for Steam later.
+This ensures 32-bit drivers will be installed which are required for Steam later.
 ```bash
 sudo dpkg --add-architecture i386
 sudo apt update && sudo apt upgrade -y
@@ -19,7 +19,7 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install linux-headers-$(uname -r) build-essential dkms -y
 ```
 
-## AMD Drivers Install
+# AMD Drivers Install
 Follow these steps only if you have an AMD GPU.
 
 ### Install latest stable version of Mesa driver
@@ -32,8 +32,8 @@ sudo apt update
 sudo apt upgrade
 ```
 
-## Nvidia Drivers Install
-Follow these steps only if you have an Nvidia gpu.
+# Nvidia Drivers Install
+Follow these steps only if you have an Nvidia GPU.
 
 ### Add the graphics-drivers PPA
 This PPA provides the latest NVIDIA drivers for Ubuntu-based distributions:
@@ -70,7 +70,7 @@ Once the key is enrolled, Ubuntu will trust any module signed with that key, and
 Reboot the system to load the Nvidia driver.
 
 ```bash
-sudo apt reboot
+sudo reboot
 ```
 
 ## Remove Snaps
@@ -81,7 +81,7 @@ If you performed the minimal install, there shouldn't be any snaps installed. Li
 snap list
 ```
 
-## Prevent Snaps from Being installed
+### Block Snaps
 
 Create an APT preference file to prevent snapd from being reinstalled automatically:
 
@@ -100,7 +100,10 @@ sudo apt update
 ```
 
 ## Enable NTSYNC Kernel Module
-The ntsync (NT Synchronization Primitive) kernel module is a specialized driver for Linux designed to significantly improve the performance and compatibility of Windows applications, particularly games, when run through compatibility layers like Proton.
+The ntsync (NT Synchronization Primitive) kernel module is a specialized driver for Linux 
+designed to significantly improve the performance and compatibility of Windows applications, 
+particularly games, when run through Proton and Wine.
+
 To enable the kernel module to load at boot:
 ```bash
 echo 'ntsync' | sudo tee /etc/modules-load.d/ntsync.conf
@@ -112,7 +115,7 @@ sudo modprobe ntsync
 lsmod | grep ntsync
 ```
 
-### Install non-free video codecs
+## Install non-free video codecs
 ```bash
 sudo apt install ubuntu-restricted-extras
 sudo apt install vainfo
@@ -123,27 +126,27 @@ vainfo
 Reboot the system to load the modifications we have made.
 
 ```bash
-sudo apt reboot
+sudo reboot
 ```
 
 ## Flatpak
 
 Flatpak is another containerized package format that some users prefer:
 
-#### Install Flatpak
+### Install Flatpak
 
 ```bash
 sudo apt install flatpak plasma-discover-backend-flatpak -y
 ```
 
-#### Add Flathub Repository
+### Add Flathub Repository
 
 ```bash
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 ```
 
 ## Chrome Browser: Hardware Accelerated Video
-To help reduce power usage and make our system more efficent when watching video using Chrome, we must add some launch options.
+To help reduce power usage and make our system more efficient when watching video using Chrome, we must add some launch options.
 
 Intel: 
 ```
@@ -176,17 +179,17 @@ sed -i "s/^\(Exec=.*google-chrome-stable\)\(.*\)/\1${FLAGS}\2/g" "$FILE_PATH"
 
 # Gaming Setup
 
-### Install Steam
+## Install Steam
 ```bash
 sudo apt install steam-installer -y
 ```
 
-### Installing Gamemode for on-demand performance
+## Installing Gamemode for on-demand performance
 ```bash
 sudo apt install gamemode -y
 ```
 
-### Makes the system prefer using RAM over disk swap
+## Makes the system prefer using RAM over disk swap
 ```bash
 sudo sysctl vm.swappiness=10
 echo 'vm.swappiness=10' | sudo tee /etc/sysctl.d/99-swappiness.conf > /dev/null
