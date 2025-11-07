@@ -1,5 +1,12 @@
 # General Gaming Setup for Kubuntu 25.10 "Questing Quokka"
 
+### Install Google Chrome
+
+```bash
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo apt install ./google-chrome-stable_current_amd64.deb
+```
+
 ### Add 32-bit platform support
 This ensures 32bit drivers will be installed which are required for Steam later.
 ```bash
@@ -82,13 +89,6 @@ sudo apt install flatpak plasma-discover-backend-flatpak -y
 
 ```bash
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-```
-
-### Install Google Chrome
-
-```bash
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo apt install ./google-chrome-stable_current_amd64.deb
 ```
 
 ### Chrome: Setup Hardware Accelerated Video Decode
