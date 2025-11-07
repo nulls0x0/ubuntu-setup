@@ -75,6 +75,13 @@ sudo modprobe ntsync
 lsmod | grep ntsync
 ```
 
+### Reboot
+Reboot the system to load the modifications we have made.
+
+```bash
+sudo apt reboot
+```
+
 ## Flatpak
 
 Flatpak is another containerized package format that some users prefer:
