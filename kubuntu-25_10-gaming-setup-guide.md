@@ -19,6 +19,9 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install linux-headers-$(uname -r) build-essential dkms -y
 ```
 
+## AMD Drivers Install
+Follow these steps only if you have an AMD GPU.
+
 ### Install latest stable version of Mesa driver
 ```bash
 sudo apt install mesa-utils
@@ -29,11 +32,45 @@ sudo apt update
 sudo apt upgrade
 ```
 
-### Install non-free video codecs
+## Nvidia Drivers Install
+Follow these steps only if you have an Nvidia gpu.
+
+### Add the graphics-drivers PPA
+This PPA provides the latest NVIDIA drivers for Ubuntu-based distributions:
 ```bash
-sudo apt install ubuntu-restricted-extras
-sudo apt install vainfo
-vainfo
+sudo add-apt-repository ppa:graphics-drivers/ppa -y
+sudo apt update
+```
+
+### Install NVIDIA Open Kernel Driver
+The NVIDIA open kernel driver provides better performance and integration with the Linux kernel.
+This is recommended for RTX 20 series (Turing) and newer GPUs.
+
+First, check what drivers are available for your system:
+```bash
+ubuntu-drivers devices | grep 'nvidia-driver.*-open'
+```
+
+Then install the latest NVIDIA open driver: i.e. nvidia-driver-[version]-open
+If you aren't sure which to select, use the driver with 'recommended' tagged on the end
+```bash
+# Install the latest available NVIDIA open driver
+sudo apt install nvidia-driver-[version]-open -y
+```
+
+### Ubuntu Nvidia Driver Siging (Secure Boot)
+When you install an NVIDIA driver from the PPA, Ubuntu automatically detects the need to sign third-party modules when Secure Boot is enabled.
+A unique local signing key, called a Machine Owner Key (MOK), should automatically be generated. The NVIDIA kernel modules are then automatically signed with this newly generated MOK.
+Ubuntu should detect that the MOK has not been enrolled in your UEFI firmware, and it will prompt you to set a password during the driver installation process.
+After the first reboot, you should be presented with the MokManager blue screen before the system fully boots.
+Select "Enroll MOK" and use the password you set during the driver installation.
+Once the key is enrolled, Ubuntu will trust any module signed with that key, and the driver will load correctly with Secure Boot enabled.
+
+### Reboot
+Reboot the system to load the Nvidia driver.
+
+```bash
+sudo apt reboot
 ```
 
 ## Remove Snaps
@@ -73,6 +110,13 @@ sudo modprobe ntsync
 
 # Verify the module is loaded
 lsmod | grep ntsync
+```
+
+### Install non-free video codecs
+```bash
+sudo apt install ubuntu-restricted-extras
+sudo apt install vainfo
+vainfo
 ```
 
 ### Reboot
@@ -153,9 +197,24 @@ echo 'vm.swappiness=10' | sudo tee /etc/sysctl.d/99-swappiness.conf > /dev/null
 ### ProtonUp-Qt (Flatpak)
 1. Open **Discover Software Manager**
 2. In the search input enter **proton**
-3. Select the **ProtonUp-Qt** Flatpak (Flathub) package
+3. Select the **ProtonUp-Qt** Flatpak (From Flathub) package
 4. Click **Install**
 
-### Minecraft Launcher 'Prism' (Flatpak)
+### Minecraft Launcher 'Prism Launcher' (Flatpak)
+1. Open **Discover Software Manager**
+2. In the search input enter **prism**
+3. Select the **Prism Launcher** Flatpak (From Flathub) package
+4. Click **Install**
 
 ### Roblox Launcher 'Sober' (Flatpak)
+1. Open **Discover Software Manager**
+2. In the search input enter **sober**
+3. Select the **Sober** Flatpak (From Flathub) package
+4. Click **Install**
+
+### OBS Studio (Flatpak)
+1. Open **Discover Software Manager**
+2. In the search input enter **obs**
+3. Select the **OBS Studio** Flatpak (From Flathub) package
+4. Click **Install**
+
