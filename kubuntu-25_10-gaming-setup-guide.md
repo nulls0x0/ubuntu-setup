@@ -98,9 +98,16 @@ sudo apt install flatpak plasma-discover-backend-flatpak -y
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 ```
 
-### Chrome: Setup Hardware Accelerated Video Decode
+## Chrome Browser: Hardware Accelerated Video
+To help reduce power usage and make our system more efficent when watching video using Chrome, we must add launch options when running Chrome.
+Depending on your GPU manufacturer you will use differnt options.
 
-Add these options to the Chrome launcher
+Intel: --enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder
+AMD: --enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoDecodeLinuxGL,VaapiIgnoreDriverChecks
+Nvidia: --enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoDecodeLinuxGL,VaapiIgnoreDriverChecks,VaapiOnNvidiaGPUs
+
+The steps below use the AMD launch options. Substitute the correct options based on your GPU model.
+
 ```bash
 cp /usr/share/applications/google-chrome.desktop ~/.local/share/applications/
 nano ~/.local/share/applications/google-chrome.desktop
